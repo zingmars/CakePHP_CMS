@@ -8,7 +8,7 @@
 namespace App\Controller;
 use App\Controller\AppController;
 
-class HomeController extends AppController
+class BlogController extends AppController
 {
     public function index()
     {

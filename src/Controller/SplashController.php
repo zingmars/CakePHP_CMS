@@ -15,4 +15,10 @@ class SplashController extends AppController
         //$this->render(false);
         $this->layout = false;
     }
+    public function getEmail()
+    {
+        $this->autoRender = false;
+        $email = "contact@zingmars.me";
+        echo $email;
+    }
 }
