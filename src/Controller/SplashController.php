@@ -12,6 +12,7 @@ class SplashController extends AppController
 {
     public function index()
     {
-        $this->render(false);
+        //$this->render(false);
+        $this->layout = false;
     }
 }
