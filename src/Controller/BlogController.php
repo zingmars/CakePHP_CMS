@@ -12,6 +12,8 @@ class BlogController extends AppController
 {
     public function index()
     {
-        
+        /*$quotes = QuotesTable::get('Quotes');
+        $query = $quotes->find();
+        $this->set('quote', $query);*/
     }
 }

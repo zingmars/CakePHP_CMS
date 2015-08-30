@@ -1,0 +1,49 @@
+header {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.quote {
+    font-style: italic;
+}
+.search {
+    width: 100% !important;
+}
+.content-view {
+    padding-right: 30px;
+}
+.content-post {
+    margin-bottom: 30px;
+}
+.content-post h2,.postdate {
+    margin: 0;
+}
+.postdate {
+    margin-left: 5px;
+}
+.sidebar-post h4, .sidebar-post p {
+    margin: 0;
+}
+.sidebar-post p:last-child {
+    margin-bottom: 10px;
+}
+#latestposts {
+    margin-bottom: 10px;
+}
+.pagination-urls a{
+    display: inline-block;
+}
+@media screen and (max-width: 900px) {
+    body {
+        background-color: lightblue;
+    }
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    header {
+        text-align: center;
+    }
+    .container {
+        width: 600px;
+    }
+}

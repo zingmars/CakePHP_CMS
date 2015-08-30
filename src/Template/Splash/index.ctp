@@ -15,6 +15,7 @@
         <?= $this->Html->css('splash.css') ?>
         <?= $this->Html->css('font-awesome.min.css') ?>
         <?= $this->Html->script('splash.js') ?>
+        <?= $this->Html->meta('icon') ?>
         <link href="http://fonts.googleapis.com/css?family=Roboto|Alegreya:700" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -51,7 +52,7 @@
                     <a href="https://www.reddit.com/user/zingmars" target="_blank" title="My favourite place to procrastinate in"><i class="fa fa-reddit-square"></i></a>
                     <a href="https://www.youtube.com/user/zingmars/" target="_blank" title="My videos"><i class="fa fa-youtube-square"></i></a>
                     <a href="#" onclick="getEmail()" title="my email"><i class="fa fa-envelope"></i></a>
-                    <a href="Blog" target="_blank" title="My blog"><i class="fa fa-rss-square"></i></a>
+                    <a href="Blog" title="My blog"><i class="fa fa-rss-square"></i></a>
                 </div>
             </div>
         </div>
