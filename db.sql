@@ -39,16 +39,16 @@ CREATE TABLE `posts` (
   `longbody` text NOT NULL,
   `createdate` datetime NOT NULL,
   `lasteditdate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `creator` int(11) NOT NULL DEFAULT '1',
-  `lasteditor` int(11) NOT NULL DEFAULT '1',
+  `creator` int(2) NOT NULL DEFAULT '1',
+  `lasteditor` int(2) NOT NULL DEFAULT '1',
   `editreason` text NOT NULL,
-  `showeditreason` tinyint(4) NOT NULL,
+  `showeditreason` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `creator` (`creator`),
   KEY `lasteditor` (`lasteditor`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `users` (`uid`),
   CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`lasteditor`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 DELIMITER ;;
 

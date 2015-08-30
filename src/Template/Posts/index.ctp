@@ -1,34 +1,89 @@
-<h1>Blog articles</h1>
-<p><?= $this->Html->link("Add Article", ['action' => 'add']) ?></p>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Created</th>
-        <th>Actions</th>
-    </tr>
+<div class="container">
+    <header>
+        <h1><a href="./Blog">My Blog</a></h1>
+        <!--Test: --><?php /*$this->fetch('quote'); */?>
+        <!--<span>Quote of the day: </span><span class="quote">"Individual Ambition Serves the Common Good" -Adam Smith</span>-->
+    </header>
+    <div class="flex-grid">
+        <div class="row">
+            <div class="content-view cell colspan9">
+                <?php foreach ($posts as $post): ?>
+                    <tr>
+                        <td><?= $this->Number->format($post->id) ?></td>
+                        <td><?= h($post->createdate) ?></td>
+                        <td><?= h($post->lasteditdate) ?></td>
+                        <td><?= $this->Number->format($post->creator) ?></td>
+                        <td><?= $this->Number->format($post->lasteditor) ?></td>
+                        <td><?= h($post->showeditreason) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $post->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $post->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $post->id], ['confirm' => __('Are you sure you want to delete # {0}?', $post->id)]) ?>
+                        </td>
+                    </tr>
 
-    <!-- Here's where we loop through our $articles query object, printing out article info -->
-
-    <?php foreach ($posts as $article): ?>
-        <tr>
-            <td><?= $article->id ?></td>
-            <td>
-                <?= $this->Html->link($article->title, ['action' => 'view', $article->id]) ?>
-            </td>
-            <td>
-                <?= $article->createdate->format(DATE_RFC850) ?>
-            </td>
-            <td>
-                <?= $this->Form->postLink(
-                    'Delete',
-                    ['action' => 'delete', $article->id],
-                    ['confirm' => 'Are you sure?'])
-                ?>
-                <?= $this->Html->link('Edit', ['action' => 'edit', $article->id]) ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-
-</table>
-<?= $this->Html->link('Add Post', ['action' => 'add']) ?>
+                <?php endforeach; ?>
+                <div class="content-post fg-dark">
+                    <h2>This is a title</h2>
+                    <p class="postdate">Posted on: xx/xx/xx</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor arcu a dictum molestie. Sed sodales massa sed vestibulum pretium. Aenean sed lacinia magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque tincidunt urna in justo fermentum, vitae faucibus ipsum eleifend. Aenean fermentum sed enim quis consectetur. Sed non ullamcorper sem. In sed nunc eget arcu rutrum dapibus sed ut leo. Donec fermentum dui id ante mollis, ut finibus metus pellentesque. Suspendisse a fringilla risus. Sed vehicula volutpat dolor sit amet malesuada. </p>
+                    <a href="#">Click here to read the full post...</a>
+                </div>
+                <div class="content-post fg-dark">
+                    <h2>This is a title</h2>
+                    <p class="postdate">Posted on: xx/xx/xx</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor arcu a dictum molestie. Sed sodales massa sed vestibulum pretium. Aenean sed lacinia magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque tincidunt urna in justo fermentum, vitae faucibus ipsum eleifend. Aenean fermentum sed enim quis consectetur. Sed non ullamcorper sem. In sed nunc eget arcu rutrum dapibus sed ut leo. Donec fermentum dui id ante mollis, ut finibus metus pellentesque. Suspendisse a fringilla risus. Sed vehicula volutpat dolor sit amet malesuada. </p>
+                    <a href="#">Click here to read the full post...</a>
+                </div>
+                <div class="pagination-urls"><a href="#"><h4>Previous page</h4></a><span> | </span><a href="#"><h4>Next page</h4></a></div>
+            </div>
+            <div class="side-bar cell colspan3">
+                <div id="latestposts">
+                    <h3>Latest posts</h3>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#"><h4>This is a title</h4></a>
+                        <p>This is the very short version</p>
+                        <p>posted on xx/xx/xx</p>
+                    </div>
+                </div>
+                <div class="search input-control text">
+                    <input type="text" placeholder="Search...">
+                    <button class="button"><span class="mif-search"></span></button>
+                </div>
+                <h3>Various links</h3>
+                <p><a href="https://www.helgesverre.com/">Helge Sverre</a></p>
+                <p><a href="https://www.svenz.lv/">Svens Jansons</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -49,7 +49,7 @@ Router::scope('/', function ($routes) {
      */
     //$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/', ['controller' => 'splash', 'action' => 'index']);
-
+    $routes->connect('/Blog', ['controller' => 'posts', 'action' => 'index']);
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

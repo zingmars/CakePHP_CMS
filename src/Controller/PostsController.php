@@ -1,57 +1,105 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
-class PostsController extends AppController{
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('Flash'); // Include the FlashComponent
-    }
+
+/**
+ * Posts Controller
+ *
+ * @property \App\Model\Table\PostsTable $Posts
+ */
+class PostsController extends AppController
+{
+
+    /**
+     * Index method
+     *
+     * @return void
+     */
     public function index()
     {
-        $posts = $this->Posts->find('all');
-        $this->set(compact('posts'));
+        $post = $this->Posts->find();
+        $this->set('posts', $this->Posts->find('all'));
     }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Post id.
+     * @return void
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
     public function view($id = null)
     {
-        $post = $this->Posts->get($id);
-        $this->set(compact('post'));
+        $post = $this->Posts->get($id, [
+            'contain' => []
+        ]);
+        $this->set('post', $post);
+        $this->set('_serialize', ['post']);
     }
+
+    /**
+     * Add method
+     *
+     * @return void Redirects on successful add, renders view otherwise.
+     */
     public function add()
     {
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->data);
             if ($this->Posts->save($post)) {
-                $this->Flash->success(__('Your article has been saved.'));
+                $this->Flash->success(__('The post has been saved.'));
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The post could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('Unable to add your article.'));
         }
-        $this->set('post', $post);
+        $this->set(compact('post'));
+        $this->set('_serialize', ['post']);
     }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Post id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
     public function edit($id = null)
     {
-        $post = $this->Posts->get($id);
-        if ($this->request->is(['post', 'put'])) {
-            $this->Posts->patchEntity($post, $this->request->data);
+        $post = $this->Posts->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $post = $this->Posts->patchEntity($post, $this->request->data);
             if ($this->Posts->save($post)) {
-                $this->Flash->success(__('Your article has been updated.'));
+                $this->Flash->success(__('The post has been saved.'));
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The post could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('Unable to update your article.'));
         }
-
-        $this->set('post', $post);
+        $this->set(compact('post'));
+        $this->set('_serialize', ['post']);
     }
-    public function delete($id)
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Post id.
+     * @return void Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-
         $post = $this->Posts->get($id);
         if ($this->Posts->delete($post)) {
-            $this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
-            return $this->redirect(['action' => 'index']);
+            $this->Flash->success(__('The post has been deleted.'));
+        } else {
+            $this->Flash->error(__('The post could not be deleted. Please, try again.'));
         }
+        return $this->redirect(['action' => 'index']);
     }
-    }
+}
