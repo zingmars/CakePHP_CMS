@@ -59,7 +59,7 @@ class PostsController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Post id.
+     * @param string $id Post id.
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
@@ -70,6 +70,26 @@ class PostsController extends AppController
         $this->set(compact('post'));
     }
 
+    /**
+     * Find method
+     *
+     * @param string $val Search lookup string to be used when looking for posts
+     * @return void
+     */
+    public function find()
+    {
+        $search = $this->request->query('search');
+
+        //$results = $this=>Posts=>find('all', 'options' => [''])
+        if($search !== '') {
+            $this->set('title', 'search results for: '.$search);
+            $this->set('search', $search);
+        }
+        else {
+            $this->set('title', 'empty search');
+        }
+    }
+    //TODO: Move the functions below to the corresponding admin panel location
     /**
      * Add method
      *

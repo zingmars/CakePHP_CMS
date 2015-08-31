@@ -11,12 +11,11 @@
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('metro.min.css') ?>
     <?= $this->Html->css('metro-icons.min.css') ?>
-    <?= $this->Html->css('font-awesome.min.css') ?>
     <?= $this->fetch('css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('metro.min.js') ?>
-    <?= $this->Html->css('blog.css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->css('blog.css') ?>
 </head>
 <body>
 <div class="container">
@@ -40,10 +39,10 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="search input-control text">
-                    <input type="text" placeholder="Search...">
-                    <button class="button"><span class="mif-search"></span></button>
-                </div>
+                <form action="<?=$this->Url->build(['controller' => 'blog', 'action' => 'find'])?>" method="get" class="search input-control text">
+                    <input type="text" name="search" placeholder="Search...">
+                    <button type="submit" value="submit" class="button searchbutton"><span class="mif-search"></span></button>
+                </form>
                 <!-- TODO: Editable from DB -->
                 <h3>Friends and stuff</h3>
                 <p><a target="_self" href="https://www.helgesverre.com/">Helge Sverre</a></p>

@@ -45,6 +45,7 @@ Router::scope('/', function ($routes) {
     $routes->connect('/', ['controller' => 'splash', 'action' => 'index']);
     $routes->connect('/blog/', ['controller' => 'Posts', 'action' => 'index']);
     $routes->connect('/blog/view/:id/*', ['controller' => 'Posts', 'action' => 'view'], ['id'=>'[0-9]+','pass'=>['id']]);
+    $routes->connect('/blog/find', ['controller' => 'Posts', 'action' => 'find']);
 
     $routes->fallbacks('InflectedRoute');
 });
