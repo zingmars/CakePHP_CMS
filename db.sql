@@ -66,6 +66,15 @@ CREATE TABLE `quotes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `quotes` (`id`, `quote`, `author`, `date`) VALUES
+(1, 'Individual Ambition Serves the Common Good', 'Adam Smith', '2015-08-30 23:41:33');
+
+DELIMITER ;;
+
+CREATE TRIGGER `quotes_date_workaround` BEFORE INSERT ON `quotes` FOR EACH ROW
+SET NEW.date=NOW();;
+
+DELIMITER ;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

@@ -15,7 +15,6 @@
     <?= $this->fetch('css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('metro.min.js') ?>
-    <?= $this->Html->script('Blog.js') ?>
     <?= $this->Html->css('blog.css') ?>
     <?= $this->fetch('script') ?>
 </head>
@@ -23,8 +22,7 @@
 <div class="container">
     <header>
         <h1><a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>">My Blog</a></h1>
-        <!--Test: --><?php /*$this->fetch('quote'); */?>
-        <!--<span>Quote of the day: </span><span class="quote">"Individual Ambition Serves the Common Good" -Adam Smith</span>-->
+        <span>Quote of the day: </span><span class="quote"><?php echo "\"".$latestquote->quote."\" - ".$latestquote->author ?></span>
     </header>
     <div class="flex-grid">
         <div class="row">
@@ -38,7 +36,7 @@
                         <div class="sidebar-post">
                             <a href="<?=$this->Url->build(['controller' => 'blog', 'action' => 'view', $post->id, str_replace(" ", "-", h($post->title))]); ?>"><h4><?= $post->title ?></h4></a>
                             <p><?= $post->veryshortbody ?>n</p>
-                            <p>posted on <?= date('Y/m/d H:i:s', strtotime(h($post->createdate)));?></p>
+                            <p>posted on <?= $post->createdate->format('Y/m/d H:i:s'); ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -51,8 +49,10 @@
                 <p><a target="_self" href="https://www.helgesverre.com/">Helge Sverre</a></p>
                 <p><a target="_self" href="https://www.svenz.lv/">Svens Jansons</a></p>
 
-                <h3>Misc info</h3>
-                <span>Version <?=\Cake\Core\Configure::read('version');?> last updated <?=\Cake\Core\Configure::read('lastupdate');?></span>
+                <h3>Misc</h3>
+                <div>Version <?=\Cake\Core\Configure::read('version');?> last updated <?=\Cake\Core\Configure::read('lastupdate');?></div>
+                <br />
+                <a href="<?=$this->Url->build(['controller' => 'splash', 'action' => 'index']);?>">Go home.</a>
             </div>
         </div>
     </div>

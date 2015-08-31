@@ -1,7 +1,13 @@
 <?php foreach ($posts as $post): ?>
     <div class="content-post">
         <h2><?= $post->title ?></h2>
-        <p class="postdate">Posted on: <?= date('M j Y, h:i', strtotime(h($post->createdate))); ?></p>
+        <p class="postdate">Posted on: <?=
+            $post->createdate->format('Y/m/d H:i:s');
+            if(!is_null($post->lasteditdate)) {
+                echo ", edited at ".$post->lasteditdate->format('Y/m/d H:i:s');
+                if($post->showeditreason !== false && $post->editreason !== "") {
+                    echo ", reason - \"".$post->editreason."\"";} }
+            ?></p>
         <p><?=$post->shortbody;?></p>
         <a href="<?=$this->Url->build(['controller' => 'blog', 'action' => 'view', $post->id, str_replace(" ", "-", h($post->title))]); ?>">Click here to read the full post...</a>
     </div>

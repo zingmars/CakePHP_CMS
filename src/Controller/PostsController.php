@@ -15,9 +15,34 @@ class PostsController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
-        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10']);
-        $this->set(compact('latestposts'));
         $this->set('title', 'My blog'); //Default title.
+
+        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10', 'fields' => [ 'Posts.title', 'Posts.veryshortbody', 'Posts.createdate' ]]);
+        $this->set(compact('latestposts'));
+
+        // Because it's very likely that my site won't get much traffic, I'm going to handle pulling the latest quote within this app.
+        $this->loadModel('Quotes');
+        $latestquote = $this->Quotes->find('all', ['order' => ['id' => 'desc']]);
+        $latestquote = $latestquote->first();
+
+        if(strtotime(date("Y-m-d H:i:s")) - strtotime($latestquote->date) > 86400) {
+            $json = file_get_contents('http://api.theysaidso.com/qod.json');
+            $obj = json_decode($json);
+            if(isset($obj->success)) {
+                $newquote = $this->Quotes->newEntity();
+                $newquote->quote = $obj->contents->quotes[0]->quote;
+                $newquote->author = $obj->contents->quotes[0]->author;
+                if($this->Quotes->save($newquote)) {
+                    $latestquote = $newquote;
+                }
+            } else {
+                $latestquote -> $this->Quotes->get(1);
+                $this->log("Couldn't get a new daily quote so the first one in the database was used. Is the service down, are we banned or did you mess up your php config again?");
+            }
+        }
+
+        $this->set(compact('obj'));
+        $this->set(compact('latestquote'));
     }
     /**
      * Index method

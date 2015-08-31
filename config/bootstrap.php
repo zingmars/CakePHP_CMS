@@ -205,4 +205,4 @@ Type::build('datetime')->useLocaleParser();
  * Version string
  */
 Configure::write('version', '1.0.0');
-Configure::write('lastupdate', "2015/09/01 07:00");
+Configure::write('lastupdate', "2015/08/31 08:00");
