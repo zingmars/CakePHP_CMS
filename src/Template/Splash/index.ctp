@@ -40,19 +40,19 @@
                 </noscript>
             </div>
             <div id="about-infobox">
-                <div id="about-location"><i class="fa fa-map-marker"></i> <a href="https://www.google.com/maps?q=R%C4%ABga,+R%C4%ABgas+pils%C4%93ta,+Latvia" target="_blank">Riga, Latvia</a></div>
+                <div id="about-location"><i class="fa fa-map-marker"></i> <a href="https://www.google.com/maps?q=R%C4%ABga,+R%C4%ABgas+pils%C4%93ta,+Latvia" target="_self">Riga, Latvia</a></div>
                 <div id="about-school"><i class="fa fa-graduation-cap"></i> <a href="http://www.rvt.lv/en/">Rigas Valsts Tehnikums</a></div>
                 <div id="about-misc">
-                    <a href="https://keybase.io/zingmars/key.asc" target="_blank" title="Public GPG key"><i class="fa fa-key"></i></a>
-                    <a href="http://twitter.zingmars.me" target="_blank" title="My random ramblings"><i class="fa fa-twitter-square"></i></a>
-                    <a href="http://github.zingmars.me" target="_blank" title="My Github, never actually used it - GitLab ftw."><i class="fa fa-github-square"></i></a>
-                    <a href="http://steam.zingmars.me" target="_blank" title="My video game storage"><i class="fa fa-steam-square"></i></a>
-                    <a href="https://news.ycombinator.com/user?id=zingmars" target="_blank" title="All my friends have one..."><i class="fa fa-hacker-news"></i></a>
-                    <a href="http://google.zingmars.me" target="_blank" title="Why do I even have this"><i class="fa fa-google-plus-square"></i></a>
-                    <a href="https://www.reddit.com/user/zingmars" target="_blank" title="My favourite place to procrastinate in"><i class="fa fa-reddit-square"></i></a>
-                    <a href="https://www.youtube.com/user/zingmars/" target="_blank" title="My videos"><i class="fa fa-youtube-square"></i></a>
+                    <a href="https://keybase.io/zingmars/key.asc" target="_self" title="Public GPG key"><i class="fa fa-key"></i></a>
+                    <a href="http://twitter.zingmars.me" target="_self" title="My random ramblings"><i class="fa fa-twitter-square"></i></a>
+                    <a href="http://github.zingmars.me" target="_self" title="My Github, never actually used it - GitLab ftw."><i class="fa fa-github-square"></i></a>
+                    <a href="http://steam.zingmars.me" target="_self" title="My video game storage"><i class="fa fa-steam-square"></i></a>
+                    <a href="https://news.ycombinator.com/user?id=zingmars" target="_self" title="All my friends have one..."><i class="fa fa-hacker-news"></i></a>
+                    <a href="http://google.zingmars.me" target="_self" title="Why do I even have this"><i class="fa fa-google-plus-square"></i></a>
+                    <a href="https://www.reddit.com/user/zingmars" target="_self" title="My favourite place to procrastinate in"><i class="fa fa-reddit-square"></i></a>
+                    <a href="https://www.youtube.com/user/zingmars/" target="_self" title="My videos"><i class="fa fa-youtube-square"></i></a>
                     <a href="#" onclick="getEmail()" title="my email"><i class="fa fa-envelope"></i></a>
-                    <a href="Blog" title="My blog"><i class="fa fa-rss-square"></i></a>
+                    <a href="Blog" target="_self" title="My blog"><i class="fa fa-rss-square"></i></a>
                 </div>
             </div>
         </div>

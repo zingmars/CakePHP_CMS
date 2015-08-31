@@ -12,7 +12,7 @@
                         <h2><?= $post->title ?></h2>
                         <p class="postdate">Posted on: <?= date('M j Y, h:i', strtotime(h($post->createdate))); ?></p>
                         <p><?=$post->shortbody;?></p>
-                        <a href="View?id=<?=$post->id;?>">Click here to read the full post...</a>
+                        <a href="Blog/View?id=<?=$post->id;?>">Click here to read the full post...</a>
                     </div>
                 <?php endforeach; ?>
                 <!-- I probably want to make these look a little better. -->
@@ -26,49 +26,22 @@
             <div class="side-bar cell colspan3">
                 <div id="latestposts">
                     <h3>Latest posts</h3>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
-                    <div class="sidebar-post">
-                        <a href="#"><h4>This is a title</h4></a>
-                        <p>This is the very short version</p>
-                        <p>posted on xx/xx/xx</p>
-                    </div>
+                    <?php foreach($latestposts as $post): ?>
+                        <div class="sidebar-post">
+                            <a href="Blog/View?id=<?=$post->id;?>"><h4><?= $post->title ?></h4></a>
+                            <p><?= $post->veryshortbody ?>n</p>
+                            <p>posted on <?= date('Y/m/d H:i:s', strtotime(h($post->createdate)));?></p>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="search input-control text">
                     <input type="text" placeholder="Search...">
                     <button class="button"><span class="mif-search"></span></button>
                 </div>
-                <h3>Various links</h3>
-                <p><a href="https://www.helgesverre.com/">Helge Sverre</a></p>
-                <p><a href="https://www.svenz.lv/">Svens Jansons</a></p>
+                <!-- TODO: Editable from DB -->
+                <h3>Friends and stuff</h3>
+                <p><a target="_self" href="https://www.helgesverre.com/">Helge Sverre</a></p>
+                <p><a target="_self" href="https://www.svenz.lv/">Svens Jansons</a></p>
             </div>
         </div>
     </div>

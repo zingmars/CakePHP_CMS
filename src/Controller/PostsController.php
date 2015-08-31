@@ -25,6 +25,8 @@ class PostsController extends AppController
     {
         $posts = $this->paginate();
         $this->set(compact('posts'));
+        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10']);
+        $this->set(compact('latestposts'));
     }
 
     /**

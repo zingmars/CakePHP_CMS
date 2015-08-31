@@ -37,10 +37,8 @@ div.content-post:nth-last-child(2) {
 .pagination-urls li{
     display: inline-block;
 }
+
 @media screen and (max-width: 900px) {
-    body {
-        /*background-color: lightblue;*/
-    }
     .row {
         flex-direction: column;
         text-align: center;
