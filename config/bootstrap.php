@@ -200,3 +200,9 @@ DispatcherFactory::add('ControllerFactory');
  * This is needed for matching the auto-localized string output of Time() class when parsing dates.
  */
 Type::build('datetime')->useLocaleParser();
+
+/**
+ * Version string
+ */
+Configure::write('version', '1.0.0');
+Configure::write('lastupdate', "2015/09/01 07:00");

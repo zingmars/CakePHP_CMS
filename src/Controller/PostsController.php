@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
+use Cake\Utility\Inflector;
 
 /**
  * Posts Controller
@@ -14,6 +15,9 @@ class PostsController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
+        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10']);
+        $this->set(compact('latestposts'));
+        $this->set('title', 'My blog'); //Default title.
     }
     /**
      * Index method
@@ -25,8 +29,6 @@ class PostsController extends AppController
     {
         $posts = $this->paginate();
         $this->set(compact('posts'));
-        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10']);
-        $this->set(compact('latestposts'));
     }
 
     /**
@@ -36,14 +38,12 @@ class PostsController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    /*public function view($id = null)
+    public function view($id)
     {
-        $post = $this->Posts->get($id, [
-            'contain' => []
-        ]);
-        $this->set('post', $post);
-        $this->set('_serialize', ['post']);
-    }*/
+        $post = $this->Posts->get($id);
+        $this->set('title', $post->title); //TODO: Move to the view. I put it here because I was yet to implement the view page.
+        $this->set(compact('post'));
+    }
 
     /**
      * Add method

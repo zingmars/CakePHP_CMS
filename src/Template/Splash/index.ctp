@@ -30,7 +30,7 @@
             <div id="about-description">
                 <!--I'll get around to writing a bio one day. For now have a twitter box instead.-->
                 <a class="twitter-timeline"  href="https://twitter.com/zingmars" data-widget-id="637659686414761984">Tweets by @zingmars. If you see this, it's probably still loading. Click here to go directly to my feed on twitter.com</a>
-                <a href="Blog" class="adblock">
+                <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>" class="adblock">
                     It appears that you're using an ad blocker or a similar piece of software that removes any references to social networks i.e. Twitter. To see this page the way it was intented to be viewed, please reload this page with all blocklists disabled. You can also click on this message to go directly to my blog. Your choice. ¯\_(ツ)_/¯
                 </a>
                 <noscript>
@@ -52,7 +52,7 @@
                     <a href="https://www.reddit.com/user/zingmars" target="_self" title="My favourite place to procrastinate in"><i class="fa fa-reddit-square"></i></a>
                     <a href="https://www.youtube.com/user/zingmars/" target="_self" title="My videos"><i class="fa fa-youtube-square"></i></a>
                     <a href="#" onclick="getEmail()" title="my email"><i class="fa fa-envelope"></i></a>
-                    <a href="Blog" target="_self" title="My blog"><i class="fa fa-rss-square"></i></a>
+                    <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>" target="_self" title="My blog"><i class="fa fa-rss-square"></i></a>
                 </div>
             </div>
         </div>
