@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 
 /**
@@ -11,6 +10,10 @@ use App\Controller\AppController;
 class PostsController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+    }
     /**
      * Index method
      *
@@ -18,8 +21,8 @@ class PostsController extends AppController
      */
     public function index()
     {
-        $post = $this->Posts->find();
-        $this->set('posts', $this->Posts->find('all'));
+        $posts = $this->Posts->find('all');
+        $this->set(compact('posts'));
     }
 
     /**
@@ -29,21 +32,21 @@ class PostsController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
+    /*public function view($id = null)
     {
         $post = $this->Posts->get($id, [
             'contain' => []
         ]);
         $this->set('post', $post);
         $this->set('_serialize', ['post']);
-    }
+    }*/
 
     /**
      * Add method
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    /*public function add()
     {
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
@@ -57,7 +60,7 @@ class PostsController extends AppController
         }
         $this->set(compact('post'));
         $this->set('_serialize', ['post']);
-    }
+    }*/
 
     /**
      * Edit method
@@ -66,7 +69,7 @@ class PostsController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    /*public function edit($id = null)
     {
         $post = $this->Posts->get($id, [
             'contain' => []
@@ -82,7 +85,7 @@ class PostsController extends AppController
         }
         $this->set(compact('post'));
         $this->set('_serialize', ['post']);
-    }
+    }*/
 
     /**
      * Delete method
@@ -91,7 +94,7 @@ class PostsController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
+    /*public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $post = $this->Posts->get($id);
@@ -101,5 +104,5 @@ class PostsController extends AppController
             $this->Flash->error(__('The post could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
-    }
+    }*/
 }
