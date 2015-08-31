@@ -13,15 +13,17 @@ class PostsController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->loadComponent('Paginator');
     }
     /**
      * Index method
      *
      * @return void
      */
+    public $paginate = [ 'limit' => 3, 'order' => ['id' => 'desc' ]];
     public function index()
     {
-        $posts = $this->Posts->find('all');
+        $posts = $this->paginate();
         $this->set(compact('posts'));
     }
 

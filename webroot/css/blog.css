@@ -1,6 +1,6 @@
 header {
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 4%;
 }
 .quote {
     font-style: italic;
@@ -10,15 +10,20 @@ header {
 }
 .content-view {
     padding-right: 30px;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 .content-post {
     margin-bottom: 30px;
+}
+div.content-post:nth-last-child(2) {
+    margin-bottom: 5px;
 }
 .content-post h2,.postdate {
     margin: 0;
 }
 .postdate {
-    margin-left: 5px;
+    margin-left: 2px;
 }
 .sidebar-post h4, .sidebar-post p {
     margin: 0;
@@ -29,12 +34,12 @@ header {
 #latestposts {
     margin-bottom: 10px;
 }
-.pagination-urls a{
+.pagination-urls li{
     display: inline-block;
 }
 @media screen and (max-width: 900px) {
     body {
-        background-color: lightblue;
+        /*background-color: lightblue;*/
     }
     .row {
         flex-direction: column;
