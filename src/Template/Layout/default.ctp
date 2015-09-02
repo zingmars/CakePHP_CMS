@@ -52,6 +52,8 @@
                 <div>Version <?=\Cake\Core\Configure::read('version');?> last updated <?=\Cake\Core\Configure::read('lastupdate');?></div>
                 <br />
                 <a href="<?=$this->Url->build(['controller' => 'splash', 'action' => 'index']);?>">Go home.</a>
+                <br />
+                <a href="<?=$this->Url->build(['controller' => 'posts', 'action' => 'index.rss']);?>">RSS Feed.</a>
             </div>
         </div>
     </div>

@@ -15,9 +15,11 @@ class PostsController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
+        $this->loadComponent('RequestHandler');
+
         $this->set('title', 'My blog'); //Default title.
 
-        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10', 'fields' => [ 'Posts.title', 'Posts.veryshortbody', 'Posts.createdate' ]]);
+        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10', 'fields' => [ 'Posts.id', 'Posts.title', 'Posts.veryshortbody', 'Posts.createdate' ]]);
         $this->set(compact('latestposts'));
 
         // Because it's very likely that my site won't get much traffic, I'm going to handle pulling the latest quote within this app.
@@ -52,7 +54,13 @@ class PostsController extends AppController
     public $paginate = [ 'limit' => 3, 'order' => ['id' => 'desc' ]];
     public function index()
     {
-        $posts = $this->paginate();
+        if($this->RequestHandler->isRSS()) {
+            $posts = $this->Posts->find()->limit(10)->order(['id'=>'desc']);
+        }
+        else {
+            $posts = $this->paginate();
+        }
+
         $this->set(compact('posts'));
     }
 
@@ -81,14 +89,10 @@ class PostsController extends AppController
         $search = $this->request->query('search');
 
         //$results = $this=>Posts=>find('all', 'options' => [''])
-        if($search !== '') {
-            $this->set('title', 'search results for: '.$search);
-            $this->set('search', $search);
-        }
-        else {
-            $this->set('title', 'empty search');
-        }
+        $this->set('title', 'search results for: '.$search);
+        $this->set('search', $search);
     }
+
     //TODO: Move the functions below to the corresponding admin panel location
     /**
      * Add method

@@ -39,6 +39,7 @@ use Cake\Routing\Router;
  * `:action` markers.
  *
  */
+Router::extensions('rss');
 Router::defaultRouteClass('Route');
 
 Router::scope('/', function ($routes) {
