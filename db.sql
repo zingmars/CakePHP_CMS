@@ -34,8 +34,7 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
-  `shortbody` text NOT NULL,
-  `veryshortbody` text NOT NULL,
+  `shortbody` text NOT NULL,  
   `longbody` text NOT NULL,
   `createdate` datetime NOT NULL,
   `lasteditdate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,

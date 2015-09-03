@@ -19,7 +19,7 @@ class PostsController extends AppController
 
         $this->set('title', 'My blog'); //Default title.
 
-        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10', 'fields' => [ 'Posts.id', 'Posts.title', 'Posts.veryshortbody', 'Posts.createdate' ]]);
+        $latestposts = $this->Posts->find('all', [ 'order' => ['id' => 'desc'], 'limit' => '10', 'fields' => [ 'Posts.id', 'Posts.title', 'Posts.shortbody', 'Posts.createdate' ]]);
         $this->set(compact('latestposts'));
 
         // Because it's very likely that my site won't get much traffic, I'm going to handle pulling the latest quote within this app.
@@ -87,10 +87,21 @@ class PostsController extends AppController
     public function find()
     {
         $search = $this->request->query('search');
-
-        //$results = $this=>Posts=>find('all', 'options' => [''])
-        $this->set('title', 'search results for: '.$search);
-        $this->set('search', $search);
+        $search = trim($search);
+        if($search === "") {
+            $this->redirect(['controller' => 'blog', 'action' => 'index']);
+        } else {
+            $this->paginate = [ 'limit' => 5, 'Post.createdate DESC', 'conditions' => [
+                'OR' => [
+                    'Posts.title LIKE' => "%$search%",
+                    'Posts.shortbody LIKE' => "%$search%",
+                    'Posts.longbody LIKE' => "%$search%"]
+            ]
+            ];
+            $results = $this->paginate();
+            $this->set('title', 'search results for: '.$search);
+            $this->set(compact('results'));
+        }
     }
 
     //TODO: Move the functions below to the corresponding admin panel location

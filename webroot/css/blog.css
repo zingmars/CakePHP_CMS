@@ -31,6 +31,10 @@ div.content-post:nth-last-child(2) {
 .sidebar-post p:last-child {
     margin-bottom: 10px;
 }
+.sidebar-post p{
+    word-wrap: break-word;
+    word-break: break-all;
+}
 #latestposts {
     margin-bottom: 10px;
 }

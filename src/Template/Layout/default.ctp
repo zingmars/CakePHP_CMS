@@ -16,6 +16,7 @@
     <?= $this->Html->script('metro.min.js') ?>
     <?= $this->fetch('script') ?>
     <?= $this->Html->css('blog.css') ?>
+    <?= $this->Html->script('blog.js') ?>
 </head>
 <body>
 <div class="container">
@@ -34,12 +35,12 @@
                     <?php foreach($latestposts as $post): ?>
                         <div class="sidebar-post">
                             <a href="<?=$this->Url->build(['controller' => 'blog', 'action' => 'view', $post->id, str_replace(" ", "-", h($post->title))]); ?>"><h4><?= $post->title ?></h4></a>
-                            <p><?= $post->veryshortbody ?>n</p>
+                            <p><?= substr($post->shortbody, 0, 45) ?>...</p>
                             <p>posted on <?= $post->createdate->format('Y/m/d H:i:s'); ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <form action="<?=$this->Url->build(['controller' => 'blog', 'action' => 'find'])?>" method="get" class="search input-control text">
+                <form action="<?=$this->Url->build(['controller' => 'blog', 'action' => 'find'])?>" method="get" onsubmit="return validateSearch(this.search)" class="search input-control text">
                     <input type="text" name="search" placeholder="Search...">
                     <button type="submit" value="submit" class="button searchbutton"><span class="mif-search"></span></button>
                 </form>
