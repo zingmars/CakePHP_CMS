@@ -41,7 +41,9 @@ div.content-post:nth-last-child(2) {
 .pagination-urls li{
     display: inline-block;
 }
-
+.highlight {
+    background: yellow;
+}
 @media screen and (max-width: 900px) {
     .row {
         flex-direction: column;

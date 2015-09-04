@@ -1,7 +1,6 @@
-<!-- TODO: Highlighting and shortmessage should only go around the highlighted text or first characters if it's in the title and not in text. -->
 <?php foreach ($results as $post): ?>
     <div class="content-post">
-        <h2><?= $post->title ?></h2>
+        <h2><?php echo(preg_replace("/($search)/", sprintf('<span class="highlight">$1</span>'), $post->title)); ?></h2>
         <p class="postdate">Posted on: <?=
             $post->createdate->format('Y/m/d H:i:s');
             if(!is_null($post->lasteditdate)) {
@@ -9,7 +8,7 @@
                 if($post->showeditreason !== false && $post->editreason !== "") {
                     echo ", reason - \"".$post->editreason."\"";} }
             ?></p>
-        <p><?=$post->shortbody;?></p>
+        <p><?php echo(preg_replace("/($search)/", sprintf('<span class="highlight">$1</span>'), substr($post->shortbody, 0, 150))); ?>...</p>
         <a href="<?=$this->Url->build(['controller' => 'blog', 'action' => 'view', $post->id, str_replace(" ", "-", h($post->title))]); ?>">Click here to read the full post...</a>
     </div>
 <?php endforeach; ?>

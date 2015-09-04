@@ -100,6 +100,7 @@ class PostsController extends AppController
             ];
             $results = $this->paginate();
             $this->set('title', 'search results for: '.$search);
+            $this->set('search', $search);
             $this->set(compact('results'));
         }
     }
