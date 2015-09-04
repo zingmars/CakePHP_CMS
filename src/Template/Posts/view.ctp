@@ -1,8 +1,13 @@
 <div class="view-post">
-    <h1>Title goes here</h1>
-    <p>Posted on: xx/xx/xx</p>
+    <h1><?=$post->title?></h1>
+    <p>Posted on: <?php
+        echo($post->createdate->format('Y/m/d H:i:s'));
+        if(!is_null($post->lasteditdate)) {
+            echo ", edited at ".$post->lasteditdate->format('Y/m/d H:i:s');
+            if($post->showeditreason !== false && $post->editreason !== "") {
+                echo ", reason - \"".$post->editreason."\"";} }
+        ?></p>
+    <p><?php echo($post->longbody) ?></p>
     <br />
-    <!-- TODO: WYSIWYG output -->
-    <p>long text goes here</p>
-    <!-- TODO: Comments section -->
+    <a href="#" onclick="window.history.back()">Go back</a>
 </div>
