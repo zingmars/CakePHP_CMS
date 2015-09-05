@@ -44,6 +44,9 @@ div.content-post:nth-last-child(2) {
 .highlight {
     background: yellow;
 }
+#gobackbutton {
+    font-size: 1.3em;
+}
 @media screen and (max-width: 900px) {
     .row {
         flex-direction: column;
@@ -54,5 +57,8 @@ div.content-post:nth-last-child(2) {
     }
     .container {
         width: 600px;
+    }
+    .content-view {
+        margin-bottom: 50px;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
-
+$this->layout = "error_default";
 if (Configure::read('debug')):
     $this->layout = 'dev_error';
 
@@ -34,4 +34,5 @@ endif;
 <p class="error">
     <strong><?= __d('cake', 'Error') ?>: </strong>
     <?= h($message) ?>
+    <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>">Go home.</a>
 </p>

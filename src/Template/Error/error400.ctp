@@ -1,6 +1,6 @@
 <?php
 use Cake\Core\Configure;
-
+$this->layout = "error_default";
 if (Configure::read('debug')):
     $this->layout = 'dev_error';
 
@@ -35,4 +35,5 @@ endif;
         __d('cake', 'The requested address %s was not found on this server.'),
         "<strong>'{$url}'</strong>"
     ) ?>
+    <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>">Go home.</a>
 </p>

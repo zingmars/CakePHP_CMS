@@ -9,5 +9,5 @@
         ?></p>
     <p><?php echo($post->longbody) ?></p>
     <br />
-    <a href="#" onclick="window.history.back()">Go back</a>
+    <a href="#" id="gobackbutton" onclick="window.history.back()">Go back</a>
 </div>
