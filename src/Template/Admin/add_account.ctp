@@ -4,7 +4,7 @@
     <br />
     <div class="input-control text full-size" data-role="input">
         <label for="user_login">Username:
-            <input class="input" type="text" name="log" id="user_login">
+            <input class="input" type="text" name="username" id="username">
         </label>
         <button class="button helper-button clear"><span class="mif-cross"></span></button>
     </div>
@@ -12,15 +12,16 @@
     <br />
     <div class="input-control password full-size" data-role="input">
         <label for="user_pass">Password:
-            <input class="input" type="password" name="pwd" id="user_pass">
+            <input class="input" type="password" name="password" id="password">
         </label>
         <button class="button helper-button reveal"><span class="mif-looks"></span></button>
     </div>
     <br />
     <br />
     <input type="hidden" name="_csrfToken" value="<?= $this->request->params['_csrfToken'] ?>">
+    <input type="hidden" name="privlvl" value="1">
     <p class="submit">
-        <button id="wp-submit" name="wp-submit" type="submit" class="button primary">Login</button>
+        <button type="submit" class="button primary">Login</button>
         <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>"><button type="button" class="button link">Cancel</button></a>
     </p>
 </form>

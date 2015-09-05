@@ -1,4 +1,4 @@
--- Adminer 4.2.2 MySQL dump
+-- MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -81,14 +81,19 @@ CREATE TABLE `users` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `registerdate` datetime NOT NULL,
-  `lastlogin` datetime NOT NULL,
+  `lastlogin` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `lastloginip` text NOT NULL,
   `lastloginsession` text NOT NULL,
   `privlvl` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `users` (`uid`, `username`, `password`, `registerdate`, `lastlogin`, `lastloginip`, `lastloginsession`, `privlvl`) VALUES
 (1,	'nulluser',	'no logins are allowed for this user',	'2015-08-27 13:38:20',	'2015-08-27 13:38:20',	'0.0.0.0',	'no sessions are allowed for this user',	0);
 
--- 2015-08-30 20:11:51
+DELIMITER ;;
+
+CREATE TRIGGER `users_workaround` BEFORE INSERT ON `users` FOR EACH ROW
+SET NEW.registerdate=NOW();;
+
+DELIMITER ;

@@ -2,7 +2,6 @@
 <html>
 <head>
     <?= $this->Html->charset() ?>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta content="plsdonotsnoop" name="description" />
     <meta content="peek-a-boo" name="keywords" />
