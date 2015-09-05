@@ -1,3 +1,4 @@
+<?php /* This is the error layout for release  */ ?>
 <!DOCTYPE html>
 <html>
 <head>

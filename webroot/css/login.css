@@ -1,0 +1,29 @@
+label {
+    width: 100%;
+}
+.login-form {
+    width: 25rem;
+    height: 18.75rem;
+    position: fixed;
+    top: 50%;
+    margin-top: -9.375rem;
+    left: 50%;
+    margin-left: -12.5rem;
+    background-color: #ffffff;
+    opacity: 0;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
+.container > .infoBoxList > .shareInfoBox {
+    display:none !important;
+}
+.message.error {
+    background: #DA5A53 none repeat scroll 0% 0%;
+    padding-top: 5px;
+    margin-top: -24px;
+    padding-bottom: 5px;
+    margin-right: -24px;
+    margin-left: -24px;
+    text-align: center;
+    font: 400 1rem/1.1 "Segoe UI","Open Sans",sans-serif,serif;
+}

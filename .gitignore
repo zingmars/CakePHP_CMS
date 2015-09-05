@@ -1,6 +1,8 @@
 /vendor/*
 /config/app.php
 /tmp/*
-/logs/*
+/logs/debug.log
+/logs/error.log
+/logs/honeypot.log
 /.idea/*
 /.editorconfig

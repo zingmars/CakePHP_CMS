@@ -12,8 +12,8 @@
  * @since         0.10.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
+/* This is the error layout in dev mode.*/
+$cakeDescription = 'Error found in application while in debug mode.';
 ?>
 <!DOCTYPE html>
 <html>
