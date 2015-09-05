@@ -5,4 +5,7 @@
 /logs/error.log
 /logs/honeypot.log
 /.idea/*
-/.editorconfig
+.editorconfig
+Thumbs.db
+.DS_Store
+.DS_Store?
