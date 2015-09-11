@@ -26,6 +26,7 @@ function getIP() {
                     getenv('HTTP_FORWARDED')?:
                         getenv('REMOTE_ADDR');
 }
+
 class AdminController extends AppController
 {
     var $components = ['Flash',
@@ -105,12 +106,47 @@ class AdminController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
-
     public function home()
     {
         $this->layout = "admin";
         $this->set('title', 'Main page');
     }
+    public function posts()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Blog posts');
+    }
+    public function comments()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Latest comments');
+    }
+    public function analytics()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Statistics');
+    }
+    public function maillist()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Mailing list');
+    }
+    public function settings()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Statistics');
+    }
+    public function profile()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Edit profile');
+    }
+    public function security()
+    {
+        $this->layout = "admin";
+        $this->set('title', 'Security settings');
+    }
+
     //Debug functions
     public function addAccount()
     {
