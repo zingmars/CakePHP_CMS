@@ -22,11 +22,11 @@
 </head>
 <body class="bg-steel">
 <div class="app-bar fixed-top darcula" data-role="appbar">
-    <a class="app-bar-element branding">BrandName</a>
+    <a href="." class="app-bar-element branding">zingmars.info</a>
     <span class="app-bar-divider"></span>
     <ul class="app-bar-menu">
         <li><a href="">Dashboard</a></li>
-        <li>
+<!--        <li>
             <a href="" class="dropdown-toggle">Project</a>
             <ul class="d-menu" data-role="dropdown">
                 <li><a href="">New project</a></li>
@@ -53,16 +53,17 @@
                 <li class="divider"></li>
                 <li><a href="">About</a></li>
             </ul>
-        </li>
+        </li>-->
     </ul>
 
     <div class="app-bar-element place-right">
-        <span class="dropdown-toggle"><span class="mif-cog"></span> User Name</span>
+        <span class="dropdown-toggle"><span class="mif-cog"></span> <?=$this->request->session()->read('Auth.User.visiblename');?></span>
         <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
-            <h2 class="text-light">Quick settings</h2>
+            <h2 class="text-light">Settings</h2>
             <ul class="unstyled-list fg-dark">
-                <li><a href="" class="fg-white1 fg-hover-yellow">Profile</a></li>
-                <li><a href="" class="fg-white2 fg-hover-yellow">Security</a></li>
+                <li><a href="profile" class="fg-white1 fg-hover-yellow">Profile</a></li>
+                <li><a href="security" class="fg-white2 fg-hover-yellow">Security</a></li>
+                <br />
                 <li><a href="logout" class="fg-white3 fg-hover-yellow">Exit</a></li>
             </ul>
         </div>
@@ -72,7 +73,8 @@
 <div class="page-content">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div id="cell-sidebar" class="cell" style="max-width: 200px;">
+            <?= $this->fetch('sidemenu') ?>
+            <!--<div id="cell-sidebar" class="cell" style="max-width: 200px;">
             <ul class="sidebar no-responsive-future">
                 <li><a href="#">
                         <span class="mif-apps icon"></span>
@@ -110,9 +112,10 @@
                         <span class="counter">0</span>
                     </a></li>
             </ul>
-            </div>
+            </div>-->
             <div class="cell auto-size padding20 bg-white" id="cell-content">
-                <h1 class="text-light">Virtual machines <span class="mif-drive-eta place-right"></span></h1>
+                <?= $this->fetch('content') ?>
+                <!--<h1 class="text-light">Virtual machines <span class="mif-drive-eta place-right"></span></h1>
                 <hr class="thin bg-grayLighter">
                 <button class="button primary" onclick="pushMessage('info')"><span class="mif-plus"></span> Create...</button>
                 <button class="button success" onclick="pushMessage('success')"><span class="mif-play"></span> Start</button>
@@ -169,7 +172,7 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
+                </table>-->
             </div>
         </div>
     </div>

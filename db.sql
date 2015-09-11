@@ -79,6 +79,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
+  `visiblename` text NOT NULL,
   `password` text NOT NULL,
   `registerdate` datetime NOT NULL,
   `lastlogin` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,

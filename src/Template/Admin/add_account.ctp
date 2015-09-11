@@ -19,7 +19,7 @@
     <br />
     <br />
     <input type="hidden" name="_csrfToken" value="<?= $this->request->params['_csrfToken'] ?>">
-    <input type="hidden" name="privlvl" value="1">
+    <input type="hidden" name="privlvl" value="11111">
     <p class="submit">
         <button type="submit" class="button primary">Login</button>
         <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>"><button type="button" class="button link">Cancel</button></a>
