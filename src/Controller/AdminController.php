@@ -12,7 +12,8 @@ use Cake\ORM\TableRegistry;
  *
  * @property \App\Model\Table\PostsTable $Posts
  */
-/* TODO: Atrast pareizo vietu kur novietot šos */
+
+/* TODO: Atrast pareizo vietu kur novietot enumus un funkcijas */
 abstract class privileges
 {
     const AdminAccess = 1;
