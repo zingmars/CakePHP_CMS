@@ -1,17 +1,17 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Post;
+use App\Model\Entity\Comment;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Posts Model
+ * Comments Model
  *
  */
-class PostsTable extends Table
+class CommentsTable extends Table
 {
 
     /**
@@ -24,9 +24,7 @@ class PostsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('posts');
-        $this->displayField('title');
-        $this->primaryKey('id');
+        $this->table('comments');
 
     }
 
@@ -43,25 +41,22 @@ class PostsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->add('postid', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('postid', 'create')
+            ->notEmpty('postid');
 
         $validator
-            ->requirePresence('shortbody', 'create')
-            ->notEmpty('shortbody');
+            ->add('userid', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('userid', 'create')
+            ->notEmpty('userid');
 
         $validator
-            ->requirePresence('longbody', 'create')
-            ->notEmpty('longbody');
+            ->requirePresence('comment', 'create')
+            ->notEmpty('comment');
 
         $validator
-            ->add('createdate', 'valid', ['rule' => 'datetime'])
-            ->notEmpty('createdate');
-
-        $validator
-            ->add('creator', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('creator', 'create')
-            ->notEmpty('creator');
+            ->add('date', 'valid', ['rule' => 'datetime'])
+            ->notEmpty('date');
 
         return $validator;
     }

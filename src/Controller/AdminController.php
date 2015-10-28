@@ -1,8 +1,7 @@
 <?php
 namespace App\Controller;
-use App\Controller\AppController;
+use App\Controller\Component\PrivilegeComponent;
 use Cake\Network\Exception\NotFoundException;
-use Cake\Utility\Inflector;
 use Cake\Filesystem\File;
 use Cake\Event\Event;
 use Cake\Core\Configure;
@@ -13,12 +12,6 @@ use Cake\ORM\TableRegistry;
  * @property \App\Model\Table\PostsTable $Posts
  */
 
-/* TODO: Atrast pareizo vietu kur novietot enumus un funkcijas */
-abstract class privileges
-{
-    const AdminAccess = 1;
-    const PostEdit = 1 << 2;
-}
 function getIP() {
     return getenv('HTTP_CLIENT_IP')?:
         getenv('HTTP_X_FORWARDED_FOR')?:
@@ -89,7 +82,7 @@ class AdminController extends AppController
         }
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            if ($user and $user['privlvl'] === privileges::AdminAccess) {
+            if ($user and $user['privlvl'] & PrivilegeComponent::AdminAccess) {
                 // Update last login data. Last login date will update automatically on DB side.
                 $users = TableRegistry::get('Users');
                 $userobject = $users->get($user['uid']);
@@ -152,8 +145,8 @@ class AdminController extends AppController
     public function addAccount()
     {
         //Debug mode account creation. Creates a new admin account and log in with it.
-        $this->layout = "login";
         if(Configure::read('debug')) {
+            $this->layout = "login";
             if ($this->request->is('post')) {
                 $user = $this->Users->newEntity($this->request->data);
                 if ($this->Users->save($user)) {

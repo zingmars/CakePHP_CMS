@@ -1,17 +1,17 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Post;
+use App\Model\Entity\Authtoken;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Posts Model
+ * Authtokens Model
  *
  */
-class PostsTable extends Table
+class AuthtokensTable extends Table
 {
 
     /**
@@ -24,8 +24,8 @@ class PostsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('posts');
-        $this->displayField('title');
+        $this->table('authtokens');
+        $this->displayField('id');
         $this->primaryKey('id');
 
     }
@@ -43,25 +43,27 @@ class PostsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->add('userid', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('userid', 'create')
+            ->notEmpty('userid');
 
         $validator
-            ->requirePresence('shortbody', 'create')
-            ->notEmpty('shortbody');
+            ->requirePresence('public_token', 'create')
+            ->notEmpty('public_token');
 
         $validator
-            ->requirePresence('longbody', 'create')
-            ->notEmpty('longbody');
+            ->requirePresence('private_token', 'create')
+            ->notEmpty('private_token');
+
+        $validator
+            ->notEmpty('type');
+
+        $validator
+            ->notEmpty('state');
 
         $validator
             ->add('createdate', 'valid', ['rule' => 'datetime'])
             ->notEmpty('createdate');
-
-        $validator
-            ->add('creator', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('creator', 'create')
-            ->notEmpty('creator');
 
         return $validator;
     }
