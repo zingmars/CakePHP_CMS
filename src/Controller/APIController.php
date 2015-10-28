@@ -57,7 +57,8 @@ class APIController extends AppController
                 ]);
                 if($this->AuthTokens->save($token)) {
                     //Return auth token
-                    echo $token->public_token;
+                    $privlvl = ($user['privlvl'] & PrivilegeComponent::AdminAccess) ? ",admin" : ",user";
+                    echo $token->public_token.$privlvl;
                 } else {
                     echo "500 Internal server error";
                     /*$errors = $token->errors();
@@ -223,6 +224,10 @@ class APIController extends AppController
     }
 
     //Utilities
+    public function checkToken() {
+        if($this->checkAuth($this->request->data("token"), $this->request->data("username")) !== null) echo "true";
+        else echo "false";
+    }
     private function checkAuth($token, $username)
     {
         //TODO: Figure out how DB links work with CAKE and rewrite.
