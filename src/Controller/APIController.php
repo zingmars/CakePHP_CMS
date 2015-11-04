@@ -168,29 +168,52 @@ class APIController extends AppController
     }
 
     //Comments
-    public function addComment($postid) //NOTTESTED
+    public function getComments($id)
     {
-        $user = $this->checkAuth($this->request->data("token"), $this->request->data("username"));
-        if($user) {
-            $this->loadModel("Comments");
-            $userid = $user['uid'];
-            $comment = $this->request->data("comment");
+        $this->loadModel('Comments');
+        $this->loadModel('Users');
 
-            $comment = $this->Comments->newEntity([
-                'postid' => $postid,
-                'userid' => $userid,
-                'comment' => $comment
-            ]);
-            if($this->Comments->save($comment)) {
-                echo "Success";
+        $comments = $this->Comments->find('all')->where(['Comments.postid' => $id])->toArray();
+        foreach($comments as &$comment) {
+            //Get the username of the poster and add it to the array
+            $comment["username"] = $this->Users->get($comment->userid)->username;
+            //Lose the userID to avoid data leakage
+            $comment["userid"] = "retracted";
+            //Make the date human readable
+            $comment["date"] = date("d.m.Y H:i:s", strtotime($comment["date"]))." UTC";
+        }
+        echo json_encode($comments);
+        return;
+    }
+    public function addComment($postid)
+    {
+        $this->loadModel('Posts');
+        $post = $this->Posts->get($postid);
+        if ($post->commentsallowed == 1) {
+            $user = $this->checkAuth($this->request->data("token"), $this->request->data("username"));
+            if($user) {
+                $this->loadModel("Comments");
+                $userid = $user['uid'];
+                $comment = $this->request->data("comment");
+
+                $comment = $this->Comments->newEntity([
+                    'postid' => $postid,
+                    'userid' => $userid,
+                    'comment' => $comment
+                ]);
+                if($this->Comments->save($comment)) {
+                    echo "Success";
+                } else {
+                    echo "An error has occurred";
+                }
             } else {
-                echo "An error has occurred";
+                echo "400 Bad Request";
             }
         } else {
-            echo "400 Bad Request";
+            echo "New comments not allowed for this post";
         }
     }
-    public function editComment($postid) //NOTTESTED
+    public function editComment($postid)
     {
         $user = $this->checkAuth($this->request->data("token"), $this->request->data("username"));
         if($user) {
@@ -207,7 +230,7 @@ class APIController extends AppController
             echo "400 Bad Request";
         }
     }
-    public function removeComment($postid) //NOTTESTED
+    public function removeComment($postid)
     {
         $user = $this->checkAuth($this->request->data("token"), $this->request->data("username"));
         if($user) {
