@@ -18,12 +18,12 @@ class APIController extends AppController
         parent::initialize();
         if(!Configure::read('debug')) { //TODO: I don't actually want this API on live servers - Too many things left to do.
             echo "403 Forbidden";
+            return;
         }
 
         $this->autoRender = false;
         $this->loadModel('AuthTokens');
         //TODO: Attempt authenticating and handle errors before actually going to the controller to avoid code repetition.
-        //Make $user returned from it a class-wide private variable?
     }
     //Get post
     public function post($id)
@@ -58,7 +58,7 @@ class APIController extends AppController
                 if($this->AuthTokens->save($token)) {
                     //Return auth token
                     $privlvl = ($user['privlvl'] & PrivilegeComponent::AdminAccess) ? ",admin" : ",user";
-                    echo $token->public_token.$privlvl;
+                    echo $token->public_token.$privlvl.",".$user['uid'];
                 } else {
                     echo "500 Internal server error";
                     /*$errors = $token->errors();
