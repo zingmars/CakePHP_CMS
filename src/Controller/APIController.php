@@ -185,6 +185,25 @@ class APIController extends AppController
         echo json_encode($comments);
         return;
     }
+    public function getUserComments($userid)
+    {
+        //TODO: Review when sober
+        $this->loadModel('Comments');
+        $this->loadModel('AuthTokens');
+        $this->loadModel('Posts');
+
+        $user = $this->checkAuth($this->request->data("token"), $this->request->data("username"));
+
+        if ($user) {
+            $comments = $this->Comments->find('all')->where(['Comments.userid' => $userid])->toArray();
+            /*foreach($comments as $comment) {
+            }*/
+            echo json_encode($comments);
+        } else {
+            echo "400 Bad Request ".$this->request->data("token").":".$this->request->data("username");
+        }
+        return;
+    }
     public function addComment($postid)
     {
         $this->loadModel('Posts');
@@ -259,7 +278,7 @@ class APIController extends AppController
 
             $tokens = $this->AuthTokens->find('all')->where(['AuthTokens.public_token' => $token]);
             $token = $tokens->first();
-            if($token !== null && $token->type === 0 && $token->state === 1) {
+            if($token !== null && $token->state === 1) {
                 $user = $this->Users->get($token->userid);
                 if($user !== null && $user['username'] === $username) {
                     //TODO: Touch the entry to cause lastusedate update
