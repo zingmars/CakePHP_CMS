@@ -71,9 +71,19 @@ class PostsController extends AppController
      */
     public function view($id)
     {
+        $this->loadModel('Comments');
+        $this->loadModel('Users');
+        $comments = $this->Comments->find('all')->where(['Comments.postid' => $id])->toArray();
+        foreach($comments as $comment) {
+            // Get the username of the poster
+            $comment["username"] = $this->Users->get($comment->userid)->username;
+        }
+
         $post = $this->Posts->get($id);
         $this->set('title', $post->title); //TODO: Move to the view. I put it here because I was yet to implement the view page.
+
         $this->set(compact('post'));
+        $this->set(compact('comments'));
     }
 
     /**

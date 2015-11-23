@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Controller\Component\PrivilegeComponent;
+use Cake\Datasource\ConnectionManager;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Filesystem\File;
 use Cake\Event\Event;
@@ -104,6 +105,27 @@ class AdminController extends AppController
     {
         $this->layout = "admin";
         $this->set('title', 'Main page');
+        // System version
+        $this->set('CakeVersion', Configure::version());
+
+        // Database data
+        $connection = ConnectionManager::get('default');
+        $this->set('Server', $connection->config()['host']);
+        $this->set('Driver', $connection->config()['driver']);
+        $this->set('User', $connection->config()['username']);
+        $this->set('Charset', $connection->config()['encoding']);
+        $this->set('Timezone', $connection->config()['timezone']);
+
+        $versionQuery = "SHOW VARIABLES LIKE 'version'";
+        $this->set('MyVersion', $connection->execute($versionQuery)->fetchAll()[0][1]);
+
+        // User data
+        $user = $this->Auth->user();
+        $this->set('CurrentIP', $this->request->clientIp());
+        $this->set('Username', $user['username']);
+        $this->set('FullName', $user['visiblename']);
+        $this->set('LastLogin', $user['lastlogin']);
+        $this->set('LastLoginIP', $user['lastloginip']);
     }
     public function posts()
     {
