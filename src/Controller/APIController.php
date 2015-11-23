@@ -239,9 +239,13 @@ class APIController extends AppController
             $CommentsTable = TableRegistry::get("Comments");
             $comment = $CommentsTable->get($postid);
 
-            $comment->comment = $this->request->data("comment");
-            if($CommentsTable->save($comment)) {
-                echo "Success";
+            if($comment->userid === $user['uid']) {
+                $comment->comment = $this->request->data("comment");
+                if($CommentsTable->save($comment)) {
+                    echo "Success";
+                } else {
+                    echo "An error has occurred";
+                }
             } else {
                 echo "An error has occurred";
             }
@@ -255,8 +259,13 @@ class APIController extends AppController
         if($user) {
             $CommentsTable = TableRegistry::get("Comments");
             $comment = $CommentsTable->get($postid);
-            if($CommentsTable->delete($comment)) {
-                echo "Success";
+
+            if($comment->userid === $user['uid']) {
+                if($CommentsTable->delete($comment)) {
+                    echo "Success";
+                } else {
+                    echo "An error has occurred";
+                }
             } else {
                 echo "An error has occurred";
             }
@@ -264,7 +273,6 @@ class APIController extends AppController
             echo "400 Bad Request";
         }
     }
-
     //Utilities
     public function checkToken() {
         if($this->checkAuth($this->request->data("token"), $this->request->data("username")) !== null) echo "true";
