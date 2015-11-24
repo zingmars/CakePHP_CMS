@@ -105,8 +105,9 @@ class AdminController extends AppController
     {
         $this->layout = "admin";
         $this->set('title', 'Main page');
-        // System version
+        // System data
         $this->set('CakeVersion', Configure::version());
+        $this->set('Debug', Configure::read('debug'));
 
         // Database data
         $connection = ConnectionManager::get('default');
@@ -123,9 +124,9 @@ class AdminController extends AppController
         $user = $this->Auth->user();
         $this->set('CurrentIP', $this->request->clientIp());
         $this->set('Username', $user['username']);
-        $this->set('FullName', $user['visiblename']);
-        $this->set('LastLogin', $user['lastlogin']);
-        $this->set('LastLoginIP', $user['lastloginip']);
+        $this->set('FullName', in_array("visiblename", $user) ? $user['visiblename'] : "");
+        $this->set('LastLogin', in_array("lastlogin", $user) ? $user['lastlogin'] : "");
+        $this->set('LastLoginIP',in_array("lastloginip", $user) ? $user['lastloginip'] : "");
     }
     public function posts()
     {

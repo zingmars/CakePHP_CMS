@@ -9,7 +9,7 @@ DROP DATABASE IF EXISTS `dankpress`;
 CREATE DATABASE `dankpress` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `dankpress`;
 
-DROP TABLE IF EXISTS `authtokens`;
+DROP TABLE IF EXISTS `auth_tokens`;
 CREATE TABLE `authtokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,

@@ -10,6 +10,7 @@
                 <li> Latest version release date: -</li>
                 <li> Framework name: CakePHP </li>
                 <li> Framework version: <?php echo $CakeVersion ?></li>
+                <li> Debug mode: <?php echo $Debug ? "<span style=\"color: red\">Enabled</span>" : "<span style=\"color: green\">Disabled</span>" ?></li>
             </ul>
         </div>
         <div class="dashboard-element">
@@ -38,7 +39,7 @@
             <ul class="no-bullets">
                 <li> Username: <?php echo $Username; ?></li>
                 <li> Full name: <?php echo $FullName; ?></li>
-                <li> Last login: <?php echo $LastLogin->format('Y/m/d H:i:s'); ?></li>
+                <li> Last login: <?php echo $LastLogin !== "" ? $LastLogin->format('Y/m/d H:i:s') : ""; ?></li>
                 <li> Last login IP: <?php echo $LastLoginIP; ?></li>
                 <li> Current IP: <?php echo $CurrentIP; ?></li>
                 <!--<li> Active language: English <a href="#">[Change language]</a></li>-->

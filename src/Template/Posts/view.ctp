@@ -2,7 +2,7 @@
     <header>
         <h1 class="entry-title"><?=$post->title?></h1>
         <h2 class="entry-summary" style="display: none;"></h2>
-        
+
         <time class="published" datetime="<?php $post->createdate ?>">Posted on: <?php
             echo($post->createdate->format('Y/m/d H:i:s'));
             if(!is_null($post->lasteditdate)) {

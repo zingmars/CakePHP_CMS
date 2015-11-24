@@ -42,7 +42,7 @@ class APIController extends AppController
         //Get Login and username from POST
         $username = $this->request->data("username");
         $password = $this->request->data("password");
-        if($username === null || $password === null || !$this->request->is('post')) {
+        if(!$this->request->is('post') || $username === null || $password === null) {
             echo "400 Bad Request";
             return;
         } else {
