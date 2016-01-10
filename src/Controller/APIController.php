@@ -16,7 +16,7 @@ class APIController extends AppController
     public function initialize()
     {
         parent::initialize();
-        if(!Configure::read('debug')) { //TODO: I don't actually want this API on live servers - Too many things left to do.
+        if(!Configure::read('debug')) { //I don't actually want this API on live servers
             echo "403 Forbidden";
             return;
         }
@@ -36,7 +36,6 @@ class APIController extends AppController
     //Login state
     public function login()
     {
-        //TODO: Use CakePHP's methods instead of $_POST. I just cba to figure them out at the time.
         $this->loadComponent('Auth');
 
         //Get Login and username from POST
@@ -280,7 +279,6 @@ class APIController extends AppController
     }
     private function checkAuth($token, $username)
     {
-        //TODO: Figure out how DB links work with CAKE and rewrite.
         if($username !== null && $token !== null) {
             $this->loadModel('Users');
 

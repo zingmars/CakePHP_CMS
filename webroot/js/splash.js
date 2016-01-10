@@ -1,5 +1,4 @@
-//Prevent random crawlers from adding my email to their spam lists
-//Also lets me modify my email without needing to modify the page.
+//Gets the current active contact email
 function getEmail()
 {
     var xmlhttp;

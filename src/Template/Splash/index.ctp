@@ -5,13 +5,7 @@
         <meta name="description" content="about Ingmars">
         <meta name="keywords" content="about Ingmars zingmars programmer webdev blog">
         <meta name="author" content="zingmars">
-        <meta name="google-site-verification" content="qcVrZUjuVgt0OvJT46RXMI6ozBaeHryC20W2K3ATPJw" />
-        <meta name="google-site-verification" content="HnLL_kAzyjjD8HXAlokSk64o_g2zv8a2Uzodhh6cSBQ" />
-        <meta name="google-site-verification" content="UfLQ3dWzAejSQD25TeTPSCMB3ujd1Dv2tgbL_gvQ1II" />
-        <meta name="google-site-verification" content="qcVrZUjuVgt0OvJT46RXMI6ozBaeHryC20W2K3ATPJw" />
-        <meta name="google-site-verification" content="UfLQ3dWzAejSQD25TeTPSCMB3ujd1Dv2tgbL_gvQ1II" />
-        <meta name="google-site-verification" content="HnLL_kAzyjjD8HXAlokSk64o_g2zv8a2Uzodhh6cSBQ" />
-        <title>About zingmars</title>
+        <title>Front page</title>
         <?= $this->Html->css('splash.css') ?>
         <?= $this->Html->css('font-awesome.min.css') ?>
         <?= $this->Html->script('splash.js') ?>
@@ -44,13 +38,7 @@
                 <div id="about-school"><i class="fa fa-graduation-cap"></i> <a href="http://www.rvt.lv/en/">Rigas Valsts Tehnikums</a></div>
                 <div id="about-misc">
                     <a href="https://keybase.io/zingmars/key.asc" target="_self" title="Public GPG key"><i class="fa fa-key"></i></a>
-                    <a href="http://twitter.zingmars.me" target="_self" title="My random ramblings"><i class="fa fa-twitter-square"></i></a>
                     <a href="http://github.zingmars.me" target="_self" title="My Github, never actually used it - GitLab ftw."><i class="fa fa-github-square"></i></a>
-                    <a href="http://steam.zingmars.me" target="_self" title="My video game storage"><i class="fa fa-steam-square"></i></a>
-                    <a href="https://news.ycombinator.com/user?id=zingmars" target="_self" title="All my friends have one..."><i class="fa fa-hacker-news"></i></a>
-                    <a href="http://google.zingmars.me" target="_self" title="Why do I even have this"><i class="fa fa-google-plus-square"></i></a>
-                    <a href="https://www.reddit.com/user/zingmars" target="_self" title="My favourite place to procrastinate in"><i class="fa fa-reddit-square"></i></a>
-                    <a href="https://www.youtube.com/user/zingmars/" target="_self" title="My videos"><i class="fa fa-youtube-square"></i></a>
                     <a href="#" onclick="getEmail()" title="my email"><i class="fa fa-envelope"></i></a>
                     <a href="<?=$this->Url->build(['controller'=>'blog', 'action'=>'index'])?>" target="_self" title="My blog"><i class="fa fa-rss-square"></i></a>
                 </div>

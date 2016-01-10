@@ -56,7 +56,7 @@ class AdminController extends AppController
     public function index()
     {
         // Honeypot
-        $this->set('title', 'Login');
+/*        $this->set('title', 'Login');
         $this->Security->unlockedFields = ['pwd', 'log', 'wp-submit', '_csrfToken'];
         $this->layout = "login";
 
@@ -71,7 +71,8 @@ class AdminController extends AppController
             $honeypotfile->append('('.date('m/d/Y h:i:s a', time()).') ('.$ip.') '.'Attempted login - '.$this->request->data['log'].':'.$this->request->data['pwd']."\r\n");
             $this->Flash->error(__('Invalid username and/or password'));
             return $this->redirect(['controller' =>$this->name, 'action'=>'index']); //Need to force a redirect because otherwise the flash won't appear
-        }
+        }*/
+        $this->setAction('login');
     }
     public function login()
     {

@@ -17,6 +17,7 @@ class SplashController extends AppController
     }
     public function getEmail()
     {
+        //TODO: Get the email from database (config table?)
         $this->autoRender = false;
         $email = "contact@zingmars.me";
         echo $email;
